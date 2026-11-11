@@ -40,9 +40,15 @@ header.top{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;font-size:.98rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
 .nav ul a:hover,.nav ul a[aria-current=page]{border-color:var(--ac);color:var(--ac)}
-.menu-btn{display:none;background:none;border:1.5px solid currentColor;border-radius:9px;padding:7px 12px;font:inherit;color:inherit;cursor:pointer}
+.menu-btn{display:none;width:44px;height:40px;background:none;border:1.5px solid currentColor;border-radius:9px;padding:0;font:inherit;color:inherit;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.menu-btn span{display:block;width:20px;height:2px;background:currentColor;border-radius:2px;transition:transform .2s,opacity .2s}
+.menu-btn[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded=true] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.fmsg.ok{color:var(--burg);font-weight:600;font-size:1.02rem}
+.fmsg.bad{color:#9b2c2c;font-weight:600}
 @media(max-width:900px){
-  .menu-btn{display:block}
+  .menu-btn{display:flex}
   .nav ul{display:none;position:absolute;top:74px;left:0;right:0;background:var(--bg);flex-direction:column;gap:0;padding:8px 24px 18px;border-bottom:1px solid var(--line)}
   .nav ul.open{display:flex}
   .nav ul a{display:block;padding:12px 0}

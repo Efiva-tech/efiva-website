@@ -134,15 +134,15 @@
       f.addEventListener('submit',function(e){
         e.preventDefault();
         var msg=f.querySelector('.fmsg'),btn=f.querySelector('button[type=submit]');
-        btn.disabled=true;msg.textContent='Sending…';
+        btn.disabled=true;msg.className='fmsg';msg.textContent='Sending…';
         fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(f)})
           .then(function(r){return r.json()})
           .then(function(j){
-            if(j.success){msg.textContent='Thanks. We will reach out within one working day to agree a time.';f.reset()}
-            else{msg.textContent='That did not send. Message us on WhatsApp instead.'}
+            if(j.success){msg.className='fmsg ok';msg.textContent='Thanks. We will reach out within one working day.';f.reset()}
+            else{msg.className='fmsg bad';msg.textContent='That did not send. Message us on WhatsApp instead.'}
             btn.disabled=false;
           })
-          .catch(function(){msg.textContent='That did not send. Message us on WhatsApp instead.';btn.disabled=false});
+          .catch(function(){msg.className='fmsg bad';msg.textContent='That did not send. Message us on WhatsApp instead.';btn.disabled=false});
       });
     });
   }
